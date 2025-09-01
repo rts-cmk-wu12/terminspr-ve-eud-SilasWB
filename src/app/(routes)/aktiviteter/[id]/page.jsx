@@ -1,7 +1,7 @@
 // Taget fra tidligere projekt
 
 export async function generateMetadata({ params }) {
-	const { id } = params;
+	const { id } = await params;
 
 	const response = await fetch(`http://localhost:4000/api/v1/activities?id=${id}`);
 	const json = await response.json();
@@ -15,7 +15,7 @@ console.log(id)
 }
 
 export default async function AktivitetPage({ params }) {
-	const { id } = params;
+	const { id } = await params;
 
 	const response = await fetch(`http://localhost:4000/api/v1/activities?id=${id}`);
 	const json = await response.json();
