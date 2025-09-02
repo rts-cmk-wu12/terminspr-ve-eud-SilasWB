@@ -1,0 +1,21 @@
+.footer {
+    position: sticky;
+    box-shadow: 1px black;
+    z-index: 5;
+    background-color: #fff;
+    padding: 1rem 0;
+    &__row {
+        display: flex;
+        font-size:24px;
+        justify-content: space-around;
+      
+    }
+
+    &__item {
+        border: 1px solid black;
+        border-radius: 50%;
+        padding: 0.5rem 0.5rem;
+       display: flex;
+       align-items: center;
+    }
+}

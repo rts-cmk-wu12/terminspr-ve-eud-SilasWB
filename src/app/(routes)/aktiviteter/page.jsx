@@ -1,4 +1,5 @@
 import AktivitetCard from "@/app/components/aktivitetCard";
+import Footer from "@/app/components/footer";
 
 
 export const metadata = {
@@ -10,9 +11,12 @@ export default async function Aktivitet() {
   const json = await response.json();
   return (
    <>
+   <h1>{metadata.title}</h1>
    <ul>
    {json.map(aktivitet => (<li key={aktivitet.id}><AktivitetCard aktivitet={aktivitet} /></li>) )}
   </ul>
+
+  <Footer />
    </>
   );
 }
