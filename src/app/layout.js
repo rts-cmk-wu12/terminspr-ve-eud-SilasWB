@@ -1,18 +1,11 @@
-// import { Ubuntu } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import "./globals.css";
 
-// const geistUbuntu = Ubuntu({
-//   variable: "--font-ubuntu-sans",
-//   subsets: ["latin"],
-// });
-export function Styling() {
-const FontSmall = "font-size: 18px;"
-const FontMedium = "font-size: 24px;"
-const FontLarge = "font-size: 36px;"
-
-}
-
-
+const geistUbuntu = Ubuntu({
+  variable: "--font-ubuntu-sans",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"]
+});
 
 export const metadata = {
   title: {
@@ -25,11 +18,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-
-      <body>{children}</body>
-      {/* <body className={`${geistUbuntu.variable}`}> */}
-      
-      {/* </body> */}
+      <body className={`${geistUbuntu.variable}`}>
+       {children}
+      </body>
     </html>
   );
 }

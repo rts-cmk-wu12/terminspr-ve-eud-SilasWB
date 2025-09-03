@@ -3,14 +3,10 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import z from "zod";
 
 export default async function doTheLoginThing(prevState, formData) {
-	const response = await fetch(`http://localhost:4000/api/v1/activities`);
-	const json = await response.json();
-console.log(json);
-// console.log(asset.id)
-
 
 	const username = formData.get("username");
 	const password = formData.get("password");
@@ -29,7 +25,7 @@ console.log(json);
 		...(z.treeifyError(validated.error))
 	}
 
-	const tokenresponse = fetch("http://localhost:4000/auth/token", {
+	const tokenresponse = await fetch("http://localhost:4000/auth/token", {
   "method": "POST",
   "headers": {
     "Content-Type": "application/json"
@@ -39,36 +35,41 @@ console.log(json);
     "password": validated.data.password
   }) 
 })
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
-	console.log(tokenresponse)
 
-	if (!tokenresponse) return {
+	if (!tokenresponse.ok) return {
 		success: false,
 		errors: ["Brugernavn eller adgangskode er forkert"]
 	}
 
-const { token } = await tokenresponse.json();
-console.log(token)
+const { token, userId } = await tokenresponse.json();
+console.log("token:", token);
+console.log("userid:", userId);
 
 
-const userresponse = fetch(`http://localhost:4000/api/v1/users/${id}`, {
+const userresponse = await fetch(`http://localhost:4000/api/v1/users/${userId}`, {
   "method": "GET",
   "headers": {
     Authorization: `Bearer ${token}`
   }
 })
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
 
+	if (!userresponse.ok) return {
+		success: false,
+		errors: ["Brugernavn eller adgangskode er forkert"]
+	}
 
+const { user } = await userresponse.json();
+console.log("user:", user);
 
-	// if () {
-	// 	const cookieStore = await cookies();
-	// 	cookieStore.set("hallojsovs", "Du er nu logget ind. Tillykke.", {
-	// 		maxAge: 60 * 30
-	// 	});
-	// }
+	if (userresponse.ok) {
+		const cookieStore = await cookies();
+		cookieStore.set("auth_token", "Du er logget ind", {
+			maxAge: 60 * 30
+		});
 
-	return validated;
+		redirect("/aktiviteter")
+	}
+
+	return { success: true, user }
+
 }

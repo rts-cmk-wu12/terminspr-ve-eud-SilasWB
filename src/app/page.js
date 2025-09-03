@@ -12,7 +12,7 @@ export default function Home() {
   <Image className="Home__Background-image" src={SplashImage} priority alt="background-image"></Image>
   <Image className="Home__Logo" src={Logo} width={200} height={200} alt="logo"></Image>
 
-  <Link className="Home__Button" href="/log-ind" >
+  <Link className="Home__Button" href="/logind" >
     Kom i gang
   </Link>
 </section>
