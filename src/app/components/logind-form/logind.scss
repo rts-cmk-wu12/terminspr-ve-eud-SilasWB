@@ -1,0 +1,27 @@
+.logind {
+position: relative;
+width: 100%;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+overflow: hidden;
+
+    &__background-image {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+        object-fit: cover;
+    }
+  
+    
+ &__search-input {
+    width: 100%;
+    padding: 1rem;
+    
+ }
+   
+}

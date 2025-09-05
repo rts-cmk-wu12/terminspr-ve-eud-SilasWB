@@ -1,0 +1,51 @@
+.aktivitetDetail {
+    min-height: 100vh;
+    background-color: #5e2e53;
+    display: flex;
+    flex-direction: column;
+    object-fit: cover;
+
+    &__image-wrapper {
+        width: 100%;
+        margin-bottom: 2rem;
+        max-width: 1000px;
+        position: relative;
+
+        img {
+            width: 100%;
+            min-height: 500px;
+            object-fit: cover;
+        }
+
+        button {
+            position: absolute;
+            bottom: -1.5rem;
+            top: 80%;
+            max-height: 50px;
+            left: 45%;
+            color: #fff;
+            background-color: #5E2E53;
+            border: none;
+            z-index: 2;
+            padding: 0.75rem 4rem;
+            font-size: 18px;
+            box-shadow: 0 4px 6px rgb(0,0,0,0.1);
+        }
+    }
+
+
+    &__layout {
+        background-color: #5E2E53;
+        padding: 2rem;
+        border-radius: 16px;
+        color: #000;
+
+        h2 {
+            font-size: 24px;
+            color: #fff;
+            
+        }
+    }
+
+
+}

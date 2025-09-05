@@ -5,7 +5,10 @@
 
 import doTheLoginThing from "@/actions/logIndThingThing";
 import { useActionState } from "react";
+import SplashImage from '../../../../public/splash-image.jpg'
 import { CircleLoader } from "react-spinners";
+import "./logind.scss"
+import Image from "next/image";
 
 const override = {
 	display: "block",
@@ -24,22 +27,25 @@ export default function LogindForm() {
 		/>
 	) : (
 		<form action={formAction}>
-			<div>
+			<div className="logind">
+			  <Image className="logind__background-image" src={SplashImage} priority alt="background-image" />
+			  <div>	
 				<label>
 					
-					<input type="text" name="username" placeholder="Brugernavn" />
+					<input className="logind__search-input" type="text" name="username" placeholder="Brugernavn" />
 					<p>{formState?.properties?.username?.errors}</p>
 				</label>
 			</div>
 			<div>
 				<label>
 					
-					<input type="password" name="password" placeholder="Adgangskode"/>
+					<input className="logind__search-input" type="password" name="password" placeholder="Adgangskode"/>
 					<p>{formState?.properties?.password?.errors}</p>
 				</label>
 			</div>
 			<button type="submit">Log ind</button>
-			<p>{formState?.errors}</p>
+			<p>{formState?.errors}</p></div>
+			
 		</form>
 	);
 }
